@@ -50,7 +50,6 @@ DATABASES = {
         default='postgresql://mamar_bank_z2gg_user:v01HNqoKWQaDlyXcHRMmIPznaqQyxIuy@dpg-cu5vpkjtq21c7383ve30-a.oregon-postgres.render.com/mamar_bank_z2gg',
     )
 }
-SECRET_KEY = 'django-insecure-mes$n&n65xj%l60*%l1bo#g$c0s7j9c$jck6nuuq-=b@zbr_5u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -135,17 +134,6 @@ environ.Env.read_env()  # Loads the .env file
 # Secret key
 SECRET_KEY = env("SECRET_KEY", default="fallback-secret-key")
 
-# Database configuration
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env("DB_NAME", default="default_db_name"),
-        'USER': env("DB_USER", default="default_user"),
-        'PASSWORD': env("DB_PASSWORD", default="default_password"),
-        'HOST': env("DB_HOST", default="localhost"),
-        'PORT': env("DB_PORT", default="5432"),
-    }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
