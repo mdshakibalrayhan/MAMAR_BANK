@@ -1,4 +1,3 @@
-
 """
 Django settings for mamar_bank project.
 
@@ -14,25 +13,26 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import dj_database_url
 import environ
+
+# Initialize environment variables
 env = environ.Env()
 environ.Env.read_env()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Your secret key
 SECRET_KEY = env("SECRET_KEY")
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-*p4#3n$&4($^#xomcfs&m7m*t_9hid%ajvl1qals^d6(t=%#2@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://mamar-bank.onrender.com','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://mamar-bank.onrender.com', 'https://*.127.0.0.1']
 
 # Application definition
 
@@ -80,43 +80,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mamar_bank.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': env("DB_NAME"),
-#         'USER': env("DB_USER"),
-#         'PASSWORD': env("DB_PASSWORD"),
-#         'HOST': env("DB_HOST"),
-#         'PORT': env("DB_PORT"),
-#     }
-# }
-
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
+# Database configuration using dj_database_url
 DATABASES = {
     'default': dj_database_url.config(
-        # Feel free to alter this value to suit your needs.
         default='postgresql://mamar_bank_z2gg_user:v01HNqoKWQaDlyXcHRMmIPznaqQyxIuy@dpg-cu5vpkjtq21c7383ve30-a.oregon-postgres.render.com/mamar_bank_z2gg',
     )
 }
 
 
 # Password validation
-# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -132,33 +104,24 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/4.2/topics/i18n/
-
+# Internationalization settings
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'static'
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Email configuration using environment variables
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+
