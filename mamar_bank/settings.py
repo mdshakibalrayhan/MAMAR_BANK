@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,7 +30,7 @@ environ.Env.read_env()  # Loads the .env file
 
 # Secret key
 SECRET_KEY = env("SECRET_KEY", default="fallback-secret-key")
-
+'''
 # Database configuration
 DATABASES = {
     'default': {
@@ -41,6 +41,14 @@ DATABASES = {
         'HOST': env("DB_HOST", default="localhost"),
         'PORT': env("DB_PORT", default="5432"),
     }
+}'''
+# Database documentation https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+
+DATABASES = {
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgresql://mamar_bank_z2gg_user:v01HNqoKWQaDlyXcHRMmIPznaqQyxIuy@dpg-cu5vpkjtq21c7383ve30-a.oregon-postgres.render.com/mamar_bank_z2gg',
+    )
 }
 SECRET_KEY = 'django-insecure-mes$n&n65xj%l60*%l1bo#g$c0s7j9c$jck6nuuq-=b@zbr_5u'
 
